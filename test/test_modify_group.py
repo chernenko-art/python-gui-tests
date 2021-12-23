@@ -1,12 +1,12 @@
 import random
 
 
-def test_modify_group(app):
+def test_modify_group(app, exel_group):
     if len(app.groups.get_group_list()) < 2:
-        app.groups.add_new_group("new group")
+        app.groups.add_new_group(exel_group)
     old_list = app.groups.get_group_list()
     group_index = random.randrange(len(old_list))
-    app.groups.modify_group_by_index(group_index, "modify_group")
+    app.groups.modify_group_by_index(group_index, exel_group)
     new_list = app.groups.get_group_list()
-    old_list[group_index] = "modify_group"
+    old_list[group_index] = exel_group
     assert sorted(old_list) == sorted(new_list)
